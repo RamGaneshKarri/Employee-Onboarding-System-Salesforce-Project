@@ -31,19 +31,6 @@ This work is part of the **TCS Last Mile Program (Phase-2)** guided by SmartBrid
 
 ---
 
-## Outcome of Phase 1  
-- Understood current onboarding problems and requirements.  
-- Identified all key stakeholders.  
-- Designed a basic onboarding process flow.  
-- Learned industry best practices and explored existing Salesforce apps.  
-
----
-
-## Next Step  
-**Phase 2: Org Setup & Configuration** – setting up Salesforce org, users, profiles, and permissions.  
-
----
-
-👨‍💻 Developed by:  
+Developed by:  
 **Ram Ganesh Karri**  
-TCS Last Mile Program | Salesforce Learner  
+
