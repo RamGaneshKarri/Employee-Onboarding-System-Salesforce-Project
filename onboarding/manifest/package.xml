@@ -9,4 +9,13 @@
     <name>Settings</name>
   </types>
   <version>64.0</version>
+  <types>
+  <members>*</members>
+  <name>CustomApplication</name>
+</types>
+<types>
+  <members>*</members>
+  <name>CustomTab</name>
+</types>
+
 </Package>
