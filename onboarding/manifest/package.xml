@@ -8,14 +8,45 @@
     <members>BusinessHours</members>
     <name>Settings</name>
   </types>
-  <version>64.0</version>
   <types>
-  <members>*</members>
-  <name>CustomApplication</name>
-</types>
-<types>
-  <members>*</members>
-  <name>CustomTab</name>
-</types>
+    <members>*</members>
+    <name>CustomApplication</name>
+  </types>
 
+  <types>
+    <members>Employee__c</members>
+    <members>Onboarding_Document__c</members>
+    <members>Training_Assignment__c</members>
+    <name>CustomObject</name>
+  </types>
+
+  <types>
+    <members>Employee__c.Email__c</members>
+    <members>Employee__c.Department__c</members>
+    <members>Employee__c.Joining_Date__c</members>
+    <members>Employee__c.Status__c</members>
+    <members>Employee__c.Manager__c</members>
+    <members>Employee__c.Phone__c</members>
+    <members>Employee__c.Location__c</members>
+
+    <members>Onboarding_Document__c.Document_Type__c</members>
+    <members>Onboarding_Document__c.Status__c</members>
+    <members>Onboarding_Document__c.File_Url__c</members>
+    <members>Onboarding_Document__c.Employee__c</members>
+
+    <members>Training_Assignment__c.Module__c</members>
+    <members>Training_Assignment__c.Due_Date__c</members>
+    <members>Training_Assignment__c.Completion_Status__c</members>
+    <members>Training_Assignment__c.Employee__c</members>
+    <name>CustomField</name>
+  </types>
+
+  <types>
+    <members>Employee__c</members>
+    <members>Onboarding_Document__c</members>
+    <members>Training_Assignment__c</members>
+    <name>CustomTab</name>
+  </types>
+
+  <version>64.0</version>
 </Package>

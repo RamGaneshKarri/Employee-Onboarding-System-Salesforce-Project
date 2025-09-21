@@ -11,4 +11,7 @@
     <tabs>standard-ContentSearch</tabs>
     <tabs>standard-ContentSubscriptions</tabs>
     <tabs>Student__c</tabs>
+    <tabs>Employee__c</tabs>
+    <tabs>Training_Assignment__c</tabs>
+    <tabs>Onboarding_Document__c</tabs>
 </CustomApplication>

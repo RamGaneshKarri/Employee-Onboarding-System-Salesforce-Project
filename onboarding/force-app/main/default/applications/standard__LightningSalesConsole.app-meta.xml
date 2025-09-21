@@ -22,11 +22,23 @@
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
     <tabs>Student__c</tabs>
+    <tabs>Employee__c</tabs>
+    <tabs>Training_Assignment__c</tabs>
+    <tabs>Onboarding_Document__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSalesConsole_UtilityBar</utilityBar>
     <workspaceConfig>
         <mappings>
+            <tab>Employee__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Onboarding_Document__c</tab>
+        </mappings>
+        <mappings>
             <tab>Student__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Training_Assignment__c</tab>
         </mappings>
         <mappings>
             <tab>standard-Account</tab>

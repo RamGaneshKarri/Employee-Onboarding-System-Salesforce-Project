@@ -27,6 +27,9 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Forecasting3</tabs>
     <tabs>Student__c</tabs>
+    <tabs>Employee__c</tabs>
+    <tabs>Training_Assignment__c</tabs>
+    <tabs>Onboarding_Document__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSales_UtilityBar</utilityBar>
 </CustomApplication>
