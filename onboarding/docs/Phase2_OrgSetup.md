@@ -7,10 +7,12 @@ Fiscal Year: Standard FY set as required.
 Fiscal Year: Standard, Start Month = January, Based on ending month.
 ![alt text](image-2.png)
 Users: ensure at least one test HR user (if possible).
+![alt text](image-3.png)
 
 Profiles/Roles: confirm standard Profile for HR and a simple Role hierarchy “CEO > HR Manager.”
 
 Permission Set: “HR Onboarding Access” (empty for now).
+![alt text](image-4.png)
 
 OWD: keep defaults; no Sharing Rules yet.
 
