@@ -1,83 +1,105 @@
-Company Info
+# Phase 2: Org Setup & Configuration
 
-Purpose: Sets org-wide locale, time zone, and currency so dates, times, and amounts render consistently for HR processes and reports.
+## Company Information
+**Purpose:**  
+Sets org-wide locale, time zone, and currency so dates, times, and amounts render consistently for HR processes and reports.
 
-Screenshot: Company Information page.
+**Screenshot:** Company Information page.  
+![Company Info](image.png)
 
-Metadata: Organization settings aren’t retrieved as a single file; they’re captured implicitly by org configuration and referenced in release notes. Note the chosen Locale, Time Zone, and Currency in the doc for auditability.
-![alt text](image.png)
-Business Hours and Holidays
+**Metadata:**  
+Organization settings are not retrieved as a single file; they are part of org configuration.  
+For audit purposes, note the chosen **Locale**, **Time Zone**, and **Currency** in documentation.
 
-Purpose: Defines HR’s working window for approvals, due times, and future SLA calculations; holidays ensure non‑working days are respected.
+---
 
-Screenshot: “HR Business Hours” detail and Holidays list.
+## Business Hours & Holidays
+**Purpose:**  
+Defines HR’s working hours for approvals, due times, and SLA calculations. Holidays ensure non-working days are respected.
 
-![alt text](image-1.png)
+**Screenshot:** HR Business Hours and Holidays list.  
+![Business Hours](image-1.png)
 
-Metadata: 
+**Metadata (BusinessHoursSettings):**
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <BusinessHoursSettings xmlns="http://soap.sforce.com/2006/04/metadata">
     <businessHours>
         <active>true</active>
         <default>true</default>
-        <fridayEndTime>00:00:00.000Z</fridayEndTime>
-        <fridayStartTime>00:00:00.000Z</fridayStartTime>
-        <mondayEndTime>00:00:00.000Z</mondayEndTime>
-        <mondayStartTime>00:00:00.000Z</mondayStartTime>
         <name>Default</name>
-        <saturdayEndTime>00:00:00.000Z</saturdayEndTime>
-        <saturdayStartTime>00:00:00.000Z</saturdayStartTime>
-        <sundayEndTime>00:00:00.000Z</sundayEndTime>
-        <sundayStartTime>00:00:00.000Z</sundayStartTime>
-        <thursdayEndTime>00:00:00.000Z</thursdayEndTime>
-        <thursdayStartTime>00:00:00.000Z</thursdayStartTime>
         <timeZoneId>America/Los_Angeles</timeZoneId>
-        <tuesdayEndTime>00:00:00.000Z</tuesdayEndTime>
-        <tuesdayStartTime>00:00:00.000Z</tuesdayStartTime>
-        <wednesdayEndTime>00:00:00.000Z</wednesdayEndTime>
-        <wednesdayStartTime>00:00:00.000Z</wednesdayStartTime>
     </businessHours>
     <businessHours>
         <active>true</active>
         <default>false</default>
-        <fridayEndTime>18:00:00.000Z</fridayEndTime>
-        <fridayStartTime>09:00:00.000Z</fridayStartTime>
-        <mondayEndTime>18:00:00.000Z</mondayEndTime>
-        <mondayStartTime>09:00:00.000Z</mondayStartTime>
         <name>HR Business Hours</name>
-        <thursdayEndTime>18:00:00.000Z</thursdayEndTime>
-        <thursdayStartTime>09:00:00.000Z</thursdayStartTime>
-        <timeZoneId>America/Los_Angeles</timeZoneId>
-        <tuesdayEndTime>18:00:00.000Z</tuesdayEndTime>
+        <mondayStartTime>09:00:00.000Z</mondayStartTime>
+        <mondayEndTime>18:00:00.000Z</mondayEndTime>
         <tuesdayStartTime>09:00:00.000Z</tuesdayStartTime>
-        <wednesdayEndTime>18:00:00.000Z</wednesdayEndTime>
+        <tuesdayEndTime>18:00:00.000Z</tuesdayEndTime>
         <wednesdayStartTime>09:00:00.000Z</wednesdayStartTime>
+        <wednesdayEndTime>18:00:00.000Z</wednesdayEndTime>
+        <thursdayStartTime>09:00:00.000Z</thursdayStartTime>
+        <thursdayEndTime>18:00:00.000Z</thursdayEndTime>
+        <fridayStartTime>09:00:00.000Z</fridayStartTime>
+        <fridayEndTime>18:00:00.000Z</fridayEndTime>
+        <timeZoneId>America/Los_Angeles</timeZoneId>
     </businessHours>
 </BusinessHoursSettings>
+```
 
+---
 
-Fiscal Year
+## Fiscal Year
+**Purpose:**  
+Confirmed **Standard Fiscal Year** with start month **January** and “Based on ending month.”  
+This keeps analytics and dashboards in sync with HR’s calendar-year planning without enabling custom fiscal years.
 
-Confirmed Standard Fiscal Year with Start Month January and “Based on ending month” to keep analytics and dashboards in sync with HR’s calendar-year planning without enabling custom fiscal years.
-![alt text](image-2.png)
-Users
+**Screenshot:** Fiscal Year settings.  
+![Fiscal Year](image-2.png)
 
-Ensured at least one HR test user for assignment of roles and permission sets during build and UAT; this enables realistic security testing early.
-![alt text](image-3.png)
+---
 
-Profiles and Roles
+## Users
+**Purpose:**  
+Created at least one **HR Test User** for role/permission testing during build and UAT.  
+This ensures realistic security testing early in the project.
 
-Kept a standard profile for HR and established a minimal role hierarchy “CEO > HR Manager” to support top‑down visibility and approval routing while keeping administration simple.
+**Screenshot:** HR Test User.  
+![Users](image-3.png)
 
-Permission Set
+---
 
-Created “HR Onboarding Access” (empty baseline) to centralize future object/field/tab permissions without relying on profile proliferation; this follows permission‑set‑led security best practices.
-![alt text](image-4.png)
-App Manager
+## Profiles & Roles
+**Purpose:**  
+- Used a **standard profile** as a base for HR.  
+- Created a minimal role hierarchy: **CEO > HR Manager**.  
 
-Created the “HR Onboarding” Lightning app with a clear brand color and starter navigation (Home, Accounts, Reports, Dashboards) so HR has a dedicated workspace; versioned as CustomApplication metadata for CI/CD.
-![alt text](image-5.png)
-Metadata:
+This setup supports top-down visibility and approval routing while keeping administration simple.
+
+---
+
+## Permission Set
+**Purpose:**  
+Created **“HR Onboarding Access”** (empty baseline) to centralize future object/field/tab permissions.  
+This follows **permission-set-led security** best practices instead of relying only on profiles.
+
+**Screenshot:** Permission Set.  
+![Permission Set](image-4.png)
+
+---
+
+## App Manager
+**Purpose:**  
+Created the **“HR Onboarding” Lightning App** with a clear brand color and starter navigation (Home, Accounts, Reports, Dashboards).  
+This provides HR with a dedicated workspace.
+
+**Screenshot:** HR Onboarding App.  
+![HR Onboarding App](image-5.png)
+
+**Metadata (CustomApplication):**
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
@@ -87,10 +109,6 @@ Metadata:
     <description>Streamlines new-hire onboarding with standardized HR hours, approvals, and access setup across roles and permissions.</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
-    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
-    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
-    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>HR Onboarding</label>
     <navType>Standard</navType>
     <tabs>standard-ApprovalsHome</tabs>
@@ -100,13 +118,19 @@ Metadata:
     <uiType>Lightning</uiType>
     <utilityBar>HR_Onboarding_UtilityBar</utilityBar>
 </CustomApplication>
+```
 
-Navigation Items
-![alt text](image-6.png)
+---
 
-Manifest entries used for retrieval
+## Navigation Items
+**Screenshot:** Navigation Items in HR Onboarding app.  
+![Navigation Items](image-6.png)
 
-Rationale: Ensures consistent retrieval of all Phase 2 components.
+---
+
+## Manifest Entries Used for Retrieval
+**Rationale:** Ensures consistent retrieval of all Phase 2 components.
+```xml
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
   <types>
     <members>*</members>
@@ -126,8 +150,16 @@ Rationale: Ensures consistent retrieval of all Phase 2 components.
   </types>
   <version>64.0</version>
 </Package>
+```
 
+---
 
-OWD: keep defaults; no Sharing Rules yet.
+## Other Configurations
+- **OWD:** Kept default settings.  
+- **Sharing Rules:** Not yet defined.  
+- **Login Access Policies:** Left as default.  
 
-Login Access Policies: leave default
+---
+
+✅ **Phase 2 Completed**  
+Next: **Phase 3 – Data Modeling & Relationships** (Custom Objects: Employee, Document, Role Assignment).
