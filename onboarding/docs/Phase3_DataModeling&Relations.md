@@ -1,109 +1,100 @@
-![alt text](image-7.png)
-
-![alt text](image-8.png)
-# Phase 3 — Data Modeling and Relationships
+# Phase 3 — Data Model & Relationships
 
 ## Objective
-Design the HR Onboarding data model with **Employee__c** as the parent object and two child objects — **Onboarding_Document__c** and **Training_Assignment__c**.  
-The goal is to structure onboarding data in Salesforce so HR can track employee details, documents, and training in a simple and repeatable way.  
-All objects, fields, layouts, and tabs are versioned in source control for reproducibility.
+The goal of this phase is to **model the core HR onboarding data** in Salesforce.  
+- **Employee__c** acts as the parent object and the hub record updated throughout onboarding.  
+- **Onboarding_Document__c** and **Training_Assignment__c** are related objects linked to Employee via **Master-Detail** relationships.  
+- Tabs, Page Layouts, and List Views ensure HR has a simple, user-friendly experience.  
+- Metadata is tracked via package.xml to make the configuration reproducible in source control.
 
 ---
 
-## Scope
-- **Employee__c (Parent)** object with core HR fields and history tracking.  
-- Two **child objects** with **Master-Detail** to Employee__c:  
-  - **Onboarding_Document__c** → for document collection and review.  
-  - **Training_Assignment__c** → for training tasks and progress tracking.  
-- Tabs created for all three objects and added to the **HR Onboarding App**.  
-- Optimized page layouts with sections and related lists.  
-- Optional list views for quick HR triage.  
-- `package.xml` entries defined for reliable metadata retrieval and versioning.  
+## Employee Object
 
----
+### What & Why
+The **Employee__c** object is the **main record** representing a new hire. HR will use this record to manage all onboarding tasks, documents, and training assignments.  
 
-## Employee__c (Parent Object)
-
-### Creation Settings
-- Enabled **Reports**, **Track Activities**, and **Track Field History**.  
-- **Record Name** set to **Text**.  
-
-### Business Purpose
-The **Employee__c** record is the **master record** for each onboarding case.  
-It serves as the central point for approvals, document tracking, training assignments, and reporting.
+### How
+- Object created as **Custom Object**: `Employee__c`  
+- **Reports** and **Activities** enabled (to allow tasks/events tracking).  
+- **Field History Tracking** enabled for auditing changes.  
+- **Record Name** set as Text (Employee Name).  
 
 ### Fields
-- **Email__c** (Email, Required): Employee’s work email for all notifications.  
-- **Department__c** (Picklist: HR; IT; Finance; Operations; Sales; Marketing. Default: HR): Ensures consistent routing and reporting.  
-- **Joining_Date__c** (Date, Required): Defines the onboarding start date and anchors timelines.  
-- **Status__c** (Picklist: Draft; Documents Pending; Manager Approved; HR Approved; Completed. Default: Draft): Tracks onboarding progress.  
-- **Manager__c** (Lookup → User): Links employee record to their manager for approvals and reporting.  
-- **Phone__c** (Phone, Optional): Contact number for communication.  
-- **Location__c** (Text 80, Optional): Captures work location.  
+- **Email__c** (Email, Required) → Employee’s work email for notifications.  
+- **Department__c** (Picklist) → HR, IT, Finance, Operations, Sales, Marketing. Default: HR.  
+- **Joining_Date__c** (Date, Required) → Start date of employment.  
+- **Status__c** (Picklist) → Draft, Documents Pending, Manager Approved, HR Approved, Completed. Default: Draft.  
+- **Manager__c** (Lookup → User) → Manager for approvals.  
+- **Phone__c** (Phone, Optional).  
+- **Location__c** (Text 80, Optional).  
 
-### Page Layout (Employee Layout)
-- **Sections**:  
-  - *Personal Info*: Email, Phone, Location, Department.  
-  - *Employment*: Joining Date, Manager, Status.  
-- **Related Lists**: Files, Open Activities, Activity History.  
+![alt text](image-7.png)
+
+### UX Configuration
+- **Page Layout Sections**:  
+  - *Personal Info* → Email, Phone, Location, Department.  
+  - *Employment* → Joining Date, Manager, Status.  
+- **Related Lists**: Files and Activities for attaching documents and tasks.  
 - **Tab**: Employees tab created and added to HR Onboarding app navigation.  
 
+
+![alt text](image-8.png)
 ---
 
-## Onboarding_Document__c (Child Object 1)
+## Onboarding Document Object
 
-### Creation Settings
-- Enabled **Reports** and **Activities**.  
-- Deployment status: **Deployed**.  
-- Search: **Allowed**.  
+### What & Why
+The **Onboarding_Document__c** object tracks employee-specific documents (ID proof, offer letter, etc.).  
+This ensures HR can validate and approve documents digitally instead of relying on manual files.  
 
-### Relationship
-- **Employee__c (Master-Detail → Employee__c)**  
-  - Child records inherit ownership and sharing rules from the parent.  
+### How
+- Object created as **Custom Object**: `Onboarding_Document__c`.  
+- **Reports** and **Activities** enabled.  
+- Related to Employee__c via **Master-Detail** relationship (so ownership/sharing is inherited).  
 
 ### Fields
-- **Document_Type__c** (Picklist: ID Proof; Address Proof; Education; Offer Letter. Restricted values).  
-- **Status__c** (Picklist: Pending; Submitted; Approved; Rejected. Default: Pending).  
-- **File_Url__c** (URL 255, Optional): To link externally stored files when not attaching directly.  
+- **Employee__c** (Master-Detail → Employee__c).  
+- **Document_Type__c** (Picklist) → ID Proof, Address Proof, Education, Offer Letter.  
+- **Status__c** (Picklist) → Pending, Submitted, Approved, Rejected. Default: Pending.  
+- **File_Url__c** (URL 255, Optional) → For cases where files are stored externally.  
 
-### Page Layout (Onboarding Document Layout)
-- **Top Field Order**: Employee, Document Type, Status, File URL.  
+![alt text](image-9.png)
+
+### UX Configuration
+- **Layout Order**: Employee, Document Type, Status, File URL.  
 - **Related Lists**: Files, Activities.  
+- **Tab**: Documents tab created and added to Employee page layout.  
 
-### Navigation
-- **Tab**: Onboarding Documents tab created and optionally added to HR Onboarding app.  
-- **Employee Layout**: Related List “Onboarding Documents” added.  
-
+![alt text](image-10.png)
 ---
 
-## Training_Assignment__c (Child Object 2)
+## Training Assignment Object
 
-### Creation Settings
-- Enabled **Reports** and **Activities**.  
-- Deployment status: **Deployed**.  
-- Search: **Allowed**.  
+### What & Why
+The **Training_Assignment__c** object manages onboarding trainings assigned to each employee.  
+This allows HR to track progress on compliance modules, soft skills, or technical training.  
 
-### Relationship
-- **Employee__c (Master-Detail → Employee__c)**  
-  - Links training tasks to the parent employee record.  
+### How
+- Object created as **Custom Object**: `Training_Assignment__c`.  
+- **Reports** and **Activities** enabled.  
+- Related to Employee__c via **Master-Detail** relationship.  
 
 ### Fields
-- **Module__c** (Text 80): Name of the training module.  
-- **Due_Date__c** (Date): Training completion deadline.  
-- **Completion_Status__c** (Picklist: Not Started; In Progress; Completed. Default: Not Started).  
+- **Employee__c** (Master-Detail → Employee__c).  
+- **Module__c** (Text 80) → Training module name.  
+- **Due_Date__c** (Date) → Training completion deadline.  
+- **Completion_Status__c** (Picklist) → Not Started, In Progress, Completed. Default: Not Started.  
 
-### Page Layout (Training Assignment Layout)
-- **Top Field Order**: Employee, Module, Due Date, Completion Status.  
+![alt text](image-11.png)
+### UX Configuration
+- **Layout Order**: Employee, Module, Due Date, Completion Status.  
 - **Related Lists**: Files, Activities.  
-
-### Navigation
-- **Tab**: Training Assignments tab created and optionally added to HR Onboarding app.  
-- **Employee Layout**: Related List “Training Assignments” added.  
-
+- **Tab**: Trainings tab created and added to Employee page layout.  
+![alt text](image-12.png)
 ---
 
-## Optional List Views
-These list views improve HR efficiency in tracking pending tasks.
+## List Views (Recommended)
 
 ### Onboarding Documents
 - **Name**: Pending Docs  
@@ -115,10 +106,14 @@ These list views improve HR efficiency in tracking pending tasks.
 - **Filter**: Completion Status ≠ Completed  
 - **Columns**: Module, Due Date, Employee, Status.  
 
+These list views help HR quickly triage pending documents and upcoming training tasks.
+
 ---
 
-## package.xml Manifest Entries
-To ensure reliable metadata retrieval, explicit entries are used (wildcards for CustomField often fail).  
+## Manifest Entries (package.xml)
+
+**Why:** Some Salesforce metadata retrieval tools reject wildcards for CustomFields.  
+Therefore, explicit field members are listed for reliability.  
 
 ```xml
 <types>
@@ -159,10 +154,7 @@ To ensure reliable metadata retrieval, explicit entries are used (wildcards for 
 
 ## Outcome
 - Created **Employee__c**, **Onboarding_Document__c**, and **Training_Assignment__c** objects.  
-- Defined **Master-Detail relationships** for secure ownership and rollup reporting.  
-- Configured **fields, layouts, related lists, and tabs** for HR usability.  
-- Built **list views** to speed document and training management.  
-- Added **manifest entries** for reliable versioning in source control.  
+- Defined **Master-Detail relationships** for controlled access and reporting.  
+- Added **fields, layouts, tabs, and related lists** for a streamlined HR experience.  
+- Prepared **manifest entries** for reliable source retrieval.  
 
-✅ **Phase 3 Completed**  
-Next: **Phase 4 — Process Automation (Admin)**: Validation Rules, Flows, Workflow Rules, and Approval Processes.
