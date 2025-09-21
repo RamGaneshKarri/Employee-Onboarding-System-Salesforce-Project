@@ -13,7 +13,10 @@ Profiles/Roles: confirm standard Profile for HR and a simple Role hierarchy “C
 
 Permission Set: “HR Onboarding Access” (empty for now).
 ![alt text](image-4.png)
-
+App Manager creation
+![alt text](image-5.png)
+Navigation Items
+![alt text](image-6.png)
 OWD: keep defaults; no Sharing Rules yet.
 
 Login Access Policies: leave default
