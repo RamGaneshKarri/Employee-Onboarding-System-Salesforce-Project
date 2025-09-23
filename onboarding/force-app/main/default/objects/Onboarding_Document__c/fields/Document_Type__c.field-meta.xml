@@ -11,9 +11,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>ID Proof; Address Proof; Education; Offer Letter.</fullName>
+                <fullName>ID Proof</fullName>
                 <default>true</default>
-                <label>ID Proof; Address Proof; Education; Offer Letter.</label>
+                <label>ID Proof</label>
+            </value>
+            <value>
+                <fullName>Address Proof</fullName>
+                <default>false</default>
+                <label>Address Proof</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Offer Letter</fullName>
+                <default>false</default>
+                <label>Offer Letter</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -11,9 +11,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>HR; IT; Finance; Operations; Sales; Marketing</fullName>
-                <default>true</default>
-                <label>HR; IT; Finance; Operations; Sales; Marketing</label>
+                <fullName>HR</fullName>
+                <default>false</default>
+                <label>HR</label>
+            </value>
+            <value>
+                <fullName>IT</fullName>
+                <default>false</default>
+                <label>IT</label>
+            </value>
+            <value>
+                <fullName>Finance Operations</fullName>
+                <default>false</default>
+                <label>Finance Operations</label>
+            </value>
+            <value>
+                <fullName>Sales</fullName>
+                <default>false</default>
+                <label>Sales</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
             </value>
         </valueSetDefinition>
     </valueSet>

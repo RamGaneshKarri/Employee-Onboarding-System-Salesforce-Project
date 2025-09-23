@@ -47,6 +47,7 @@
     <members>Training_Assignment__c</members>
     <name>CustomTab</name>
   </types>
+  <types><members>*</members><name>Flow</name></types>
 
   <version>64.0</version>
 </Package>
